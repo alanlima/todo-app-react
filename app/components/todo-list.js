@@ -167,10 +167,11 @@ class TodoList extends Component
     }
 
     handleNewItem(text) {
-        let todosCopy = this.state.todos.slice();
-        todosCopy.push({id: todosCopy.length + 1, text, completed: false});
-        this.setState({
-            todos: todosCopy
+       this.setState({
+            todos: [
+                ...this.state.todos,
+                {id: this.state.todos.length + 1, text, completed: false}
+            ]
         })
     }
 
