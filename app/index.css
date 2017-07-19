@@ -26,12 +26,17 @@
     padding-left: 10px;
 }
 
-.delete-item {
+.todo-list li a {
     display: inline-flex;
-    width: 24px;
+    margin-right: auto;
+    cursor: pointer;
+    width: 100%;
+}
+
+.delete-item {
     height: 24px;
-    margin-left: auto;
     margin-right: 5px;
+    cursor: pointer;
 }
 
 .clear-completed {

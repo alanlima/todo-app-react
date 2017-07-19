@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
+import AddButton from 'components/AddButton';
 
 const TodoListItens = (props) => {
     return (
@@ -39,66 +40,6 @@ TodoListItens.propTypes = {
     list: PropTypes.array.isRequired,
     onClick: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired
-}
-
-class TodoInput extends Component {
-    constructor(props){
-        super(props);
-        
-        this.state = {
-            text: ''
-        }
-
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-
-    handleSubmit(event) {
-        event.preventDefault();
-
-        this.props.onSubmit(this.state.text);
-
-        this.setState({
-            text: ''
-        });
-    }
-
-    handleChange(event) {
-        this.setState({
-            text: event.target.value
-        });
-    }
-
-    render() {
-        return (
-            <form className='row'>
-                <label className='header' htmlFor='text'>
-                    {this.props.label}
-                </label>
-                <input
-                    id='text'
-                    placeholder='to do item'
-                    type='text'
-                    autoComplete='off'
-                    className="col s9"
-                    value={this.state.text}
-                    onChange={this.handleChange}
-                />
-                <button
-                    className='btn waves-effect waves-light col s3'
-                    type='submit'
-                    disabled={!this.state.text}
-                    onClick={this.handleSubmit}>
-                    Add
-                </button>
-            </form>
-        );
-    }
-}
-
-TodoInput.propTypes = {
-    text: PropTypes.string,
-    onSubmit: PropTypes.func.isRequired
 }
 
 const TodoFilter = (props) => {
@@ -151,18 +92,6 @@ TodoFooter.propTypes = {
 
 TodoFooter.defaultProps = {
     enableClearCompleted: false
-}
-
-class AddButton extends Comment {
-    reander() {
-        return (
-            <div className='fixed-action-btn'>
-                <a className='btn-floating red'>
-                    <i className='large material-icons'>add</i>
-                </a>
-            </div>
-        );
-    }
 }
 
 class TodoList extends Component
@@ -234,11 +163,6 @@ class TodoList extends Component
 
         return (
             <div>
-                <TodoInput 
-                    onSubmit={this.handleNewItem} />
- 
-                <h2> To Do </h2>
-
                 <TodoFilter
                     onFilter={this.handleFilter}
                     selectedFilter={this.state.selectedFilter}
@@ -255,7 +179,7 @@ class TodoList extends Component
                     onClearCompleted={this.handleClearCompleted}
                     />
 
-                <AddButton />
+                <AddButton onNewItem={this.handleNewItem} />
             </div>
         )
     }
