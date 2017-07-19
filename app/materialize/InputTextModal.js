@@ -28,7 +28,6 @@ class InputTextModal extends Component {
     addItem(){
         this.props.onNewItem(this.state.text);
         this.closeModal();
-        Materialize.toast('New item added successfully.', 4000);
     }
 
     closeModal(){

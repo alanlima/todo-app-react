@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --open"
+    "start": "webpack-dev-server --open",
+    "build": "NODE_ENV='production' webpack -p",
+    "deploy-surge": "npm run build && surge -p dist -d todo2.surge.sh"
   },
   "author": "",
   "license": "ISC",

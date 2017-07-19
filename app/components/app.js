@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import TodoList from 'components/todo-list';
+import TodoApp from 'components/todo-app';
 import NavBar from 'materialize/NavBar';
 
 class App extends Component
@@ -21,7 +21,7 @@ class App extends Component
                 <div className="container">
                     <h3>To Do List</h3>
 
-                    <TodoList todos={this.state.todos} />
+                    <TodoApp todos={this.state.todos} />
                 </div>
             </div>
         )
