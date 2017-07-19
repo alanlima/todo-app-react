@@ -80,12 +80,14 @@ class TodoApp extends Component
                     onFilter={this.handleFilter}
                     selectedFilter={this.state.selectedFilter}
                 />
-                
-                <TodoList 
-                    list={sortedTodos}
-                    onClick={this.handleClick}
-                    onDelete={this.handleDelete}  />
 
+                {sortedTodos.length === 0 
+                    ? <strong><center>There are no items to show.</center></strong>
+                    : <TodoList 
+                        list={sortedTodos}
+                        onClick={this.handleClick}
+                        onDelete={this.handleDelete}  />}
+        
                 <TodoFooter 
                     itemsLeft={itemsLeft}
                     enableClearCompleted={itemsLeft !== this.state.todos.length}

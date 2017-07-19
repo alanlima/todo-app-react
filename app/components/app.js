@@ -19,7 +19,7 @@ class App extends Component
             <div>
                 <NavBar title="To Do App" />
                 <div className="container">
-                    <h3>To Do List</h3>
+                    {/* <h3>To Do List</h3> */}
 
                     <TodoApp todos={this.state.todos} />
                 </div>
