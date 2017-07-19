@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import TodoList from 'components/todo-list';
+import NavBar from 'materialize/NavBar';
 
 class App extends Component
 {
@@ -15,10 +16,13 @@ class App extends Component
 
     render(){
         return (
-            <div className="container">
-                <h1>To Do List</h1>
+            <div>
+                <NavBar title="To Do App" />
+                <div className="container">
+                    <h3>To Do List</h3>
 
-                <TodoList todos={this.state.todos} />
+                    <TodoList todos={this.state.todos} />
+                </div>
             </div>
         )
     }

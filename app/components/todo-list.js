@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames/bind';
 
 const TodoListItens = (props) => {
     return (
-        <ul>
+        <ul className='todo-list'>
             {props.list.map((item) => {
                 return (<li 
                             key={item.id} 
-                            className='todo-item'>
+                            className='todo-item z-depth-1'>
 
                             <a 
                                 className={item.completed && 'done'}
@@ -19,12 +20,13 @@ const TodoListItens = (props) => {
                                     readOnly
                                     checked={item.completed == true} />
 
-                                {item.text}
+                                <label>{item.text}</label>
                             </a>
 
                             <span 
                                 className='delete-item' 
                                 onClick={() => props.onDelete(item.id)}>
+                                <i className='material-icons'>delete</i>
                             </span>
 
                         </li>);
@@ -69,7 +71,7 @@ class TodoInput extends Component {
 
     render() {
         return (
-            <form className='column'>
+            <form className='row'>
                 <label className='header' htmlFor='text'>
                     {this.props.label}
                 </label>
@@ -78,11 +80,12 @@ class TodoInput extends Component {
                     placeholder='to do item'
                     type='text'
                     autoComplete='off'
+                    className="col s9"
                     value={this.state.text}
                     onChange={this.handleChange}
                 />
                 <button
-                    className='button'
+                    className='btn waves-effect waves-light col s3'
                     type='submit'
                     disabled={!this.state.text}
                     onClick={this.handleSubmit}>
@@ -98,40 +101,68 @@ TodoInput.propTypes = {
     onSubmit: PropTypes.func.isRequired
 }
 
-const TodoFooter = (props) => {
-    const itemsLeft = props.itemsLeft;
-
-    return (
-        <div className='todo-footer'>
-            <span>{itemsLeft} item{itemsLeft > 1 && "s"} left</span>
-
-            <ul className='todo-filter'>
+const TodoFilter = (props) => {
+   return (<ul className='todo-filter'>
                 {['All', 'Active', 'Completed'].map(
                     (item) => 
                         <li 
                             key={item} 
-                            style={{fontWeight: props.selectedFilter === item && 'bold'}}
+                            className={classNames({
+                                "btn": true,
+                                "waves-effect": true,
+                                "waves-light": true,
+                                "disabled": props.selectedFilter === item
+                            })}
                             onClick={() => props.onFilter(item)}>
                             {item}
                         </li>)}
-            </ul>
+            </ul>);
+}
 
-            {props.enableClearCompleted && <a onClick={props.onClearCompleted}>Clear Completed</a>}
+TodoFilter.propTypes = {
+    onFilter: PropTypes.func.isRequired,
+    selectedFilter: PropTypes.string.isRequired
+}
+
+TodoFilter.defaultProps = {
+    selectedFilter: 'All'
+}
+
+const TodoFooter = (props) => {
+    const itemsLeft = props.itemsLeft;
+
+    return (
+        <div className='row'>
+            <div className='col s8'>
+                <span>{itemsLeft} item{itemsLeft > 1 && "s"} left</span>
+
+                {props.enableClearCompleted && <a onClick={props.onClearCompleted} className='clear-completed'>Clear Completed</a>}
+                
+            </div>
         </div>
     )
 }
 
 TodoFooter.propTypes = {
     itemsLeft: PropTypes.number.isRequired,
-    onFilter: PropTypes.func.isRequired,
-    selectedFilter: PropTypes.string.isRequired,
     onClearCompleted: PropTypes.func.isRequired,
     enableClearCompleted: PropTypes.bool.isRequired
 }
 
 TodoFooter.defaultProps = {
-    selectedFilter: 'All',
     enableClearCompleted: false
+}
+
+class AddButton extends Comment {
+    reander() {
+        return (
+            <div className='fixed-action-btn'>
+                <a className='btn-floating red'>
+                    <i className='large material-icons'>add</i>
+                </a>
+            </div>
+        );
+    }
 }
 
 class TodoList extends Component
@@ -147,7 +178,7 @@ class TodoList extends Component
         this.handleClick = this.handleClick.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
         this.handleNewItem = this.handleNewItem.bind(this);
-        this.handleFooterFilter = this.handleFooterFilter.bind(this);
+        this.handleFilter = this.handleFilter.bind(this);
         this.handleClearCompleted = this.handleClearCompleted.bind(this);
     }
 
@@ -175,7 +206,7 @@ class TodoList extends Component
         })
     }
 
-    handleFooterFilter(filter){
+    handleFilter(filter){
 
         const filterPredicate = {
             'All': (item) => true,
@@ -207,6 +238,11 @@ class TodoList extends Component
                     onSubmit={this.handleNewItem} />
  
                 <h2> To Do </h2>
+
+                <TodoFilter
+                    onFilter={this.handleFilter}
+                    selectedFilter={this.state.selectedFilter}
+                />
                 
                 <TodoListItens 
                     list={sortedTodos}
@@ -216,10 +252,10 @@ class TodoList extends Component
                 <TodoFooter 
                     itemsLeft={itemsLeft}
                     enableClearCompleted={itemsLeft !== this.state.todos.length}
-                    onFilter={this.handleFooterFilter}
-                    selectedFilter={this.state.selectedFilter}
                     onClearCompleted={this.handleClearCompleted}
                     />
+
+                <AddButton />
             </div>
         )
     }
