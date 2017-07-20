@@ -83,7 +83,7 @@ class TodoApp extends Component
     }
 
     handleClearCompleted(){
-        const itemsCompletedCount = this.state.todos.filter((item) => item.completed === false).length;
+        const itemsCompletedCount = this.state.todos.filter((item) => item.completed === true).length;
         
         this.setState({
             todos: this.state.todos.filter((item) => item.completed === false)
