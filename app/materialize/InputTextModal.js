@@ -13,6 +13,14 @@ class InputTextModal extends Component {
         this.closeModal = this.closeModal.bind(this);
     }
 
+    componentWillReceiveProps(nextProps){
+        if(nextProps.showModal) {
+            this.openModal();
+        } else {
+            this.closeModal();
+        }
+    }
+
     handleChange(event) {
         this.setState({
             text: event.target.value
@@ -27,7 +35,7 @@ class InputTextModal extends Component {
 
     addItem(){
         this.props.onNewItem(this.state.text);
-        this.closeModal();
+        this.props.onClose();
     }
 
     closeModal(){
@@ -77,7 +85,13 @@ class InputTextModal extends Component {
 }
 
 InputTextModal.propTypes = {
-    onNewItem: PropTypes.func.isRequired
+    onNewItem: PropTypes.func.isRequired,
+    onClose: PropTypes.func.isRequired,
+    showModal: PropTypes.bool.isRequired
+}
+
+InputTextModal.defaultProps = {
+    showModal: false
 }
 
 module.exports = InputTextModal;

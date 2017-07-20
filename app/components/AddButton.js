@@ -7,11 +7,20 @@ class AddButton extends Component {
     constructor(props){
         super(props);
 
+        this.state = {
+            showModal: false
+        }
+
         this.openModal = this.openModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
     }
 
     openModal() {
-        this.modal.openModal();
+        this.setState({ showModal: true });
+    }
+
+    closeModal() {
+        this.setState({ showModal: false });
     }
 
     render() {
@@ -29,8 +38,9 @@ class AddButton extends Component {
                     </a>
                 </div>
                 <InputTextModal 
-                    ref={m => this.modal = m}
-                    onNewItem={this.props.onNewItem} />
+                    showModal={this.state.showModal}
+                    onNewItem={this.props.onNewItem}
+                    onClose={this.closeModal} />
             </div>
         );
     }
