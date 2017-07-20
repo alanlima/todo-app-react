@@ -124,7 +124,13 @@ class TodoApp extends Component
 }
 
 TodoApp.propTypes = {
-    todos: PropTypes.array.isRequired
+    todos: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.number.isRequired,
+            text: PropTypes.string.isRequired,
+            completed: PropTypes.bool.isRequired
+        }).isRequired
+    ).isRequired
 }
 
 module.exports = TodoApp;
