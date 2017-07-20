@@ -2,6 +2,28 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { AddButton, TodoFilter, TodoFooter, TodoList } from './Components';
 
+const NoContent = (props) => {
+    return (
+        <strong>
+            <center>Ohh noooooow. There are no items to display =(
+                <br />
+                {props.showAddNewItemLink === true && 
+                    <a href='#' onClick={() => $('.tap-target').tapTarget('open')}>
+                        Well, you can add a new item =)
+                    </a>}
+            </center>
+        </strong>
+    );
+}
+
+NoContent.propTypes = {
+    showAddNewItemLink: PropTypes.bool.isRequired
+}
+
+NoContent.defaultProps = {
+    showAddNewItemLink: true
+}
+
 class TodoApp extends Component
 {
     constructor(props){
@@ -62,6 +84,7 @@ class TodoApp extends Component
 
     handleClearCompleted(){
         const itemsCompletedCount = this.state.todos.filter((item) => item.completed === false).length;
+        
         this.setState({
             todos: this.state.todos.filter((item) => item.completed === false)
         })
@@ -82,7 +105,7 @@ class TodoApp extends Component
                 />
 
                 {sortedTodos.length === 0 
-                    ? <strong><center>There are no items to show.</center></strong>
+                    ? <NoContent showAddNewItemLink={itemsLeft === 0} />
                     : <TodoList 
                         list={sortedTodos}
                         onClick={this.handleClick}

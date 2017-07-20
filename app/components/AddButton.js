@@ -17,8 +17,14 @@ class AddButton extends Component {
     render() {
         return (
             <div>
+                <div className="tap-target" data-activates="newItemButton">
+                    <div className="tap-target-content">
+                        <h5>New Item Button</h5>
+                        <p>Click here to add a new to do item.</p>
+                    </div>
+                </div>
                 <div className='fixed-action-btn'>
-                    <a className='btn-floating red' onClick={this.openModal}>
+                    <a id='newItemButton' className='btn-floating btn-large red' onClick={this.openModal}>
                         <i className='large material-icons'>add</i>
                     </a>
                 </div>
