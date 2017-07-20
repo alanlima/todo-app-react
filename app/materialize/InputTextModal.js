@@ -14,11 +14,11 @@ class InputTextModal extends Component {
     }
 
     componentWillReceiveProps(nextProps){
-        if(nextProps.showModal) {
-            this.openModal();
-        } else {
-            this.closeModal();
-        }
+        if(this.props.showModal === nextProps.showModal) return;
+
+        nextProps.showModal 
+            ? this.openModal() 
+            : this.closeModal();
     }
 
     handleChange(event) {
@@ -69,13 +69,13 @@ class InputTextModal extends Component {
                     <a 
                         href="#!" 
                         onClick={this.addItem}
-                        className="modal-action modal-close waves-effect waves-green btn-flat">
+                        className="waves-effect waves-green btn-flat">
                         Add
                     </a>
                     <a 
                         href="#!" 
-                        onClick={this.closeModal}
-                        className="modal-action modal-close waves-effect waves-green btn-flat">
+                        onClick={this.props.onClose}
+                        className="waves-effect waves-green btn-flat">
                         Cancel
                     </a>
                 </div>
