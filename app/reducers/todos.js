@@ -8,7 +8,6 @@ const initialState = [
 const todos = (state = initialState, action) => {
     switch(action.type) {
         case 'ADD_TODO':
-            console.log('adding...', action);
             return [
                 ...state,
                 {

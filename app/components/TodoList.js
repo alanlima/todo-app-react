@@ -42,7 +42,13 @@ const TodoList = (props) => {
 }
 
 TodoList.propTypes = {
-    todos: PropTypes.array.isRequired,
+    todos: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.number.isRequired,
+            text: PropTypes.string.isRequired,
+            completed: PropTypes.bool.isRequired
+        }).isRequired
+    ).isRequired,
     onTodoClick: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired
 }

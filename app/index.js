@@ -10,10 +10,7 @@ import './index.css';
 import 'materialize-css/dist/css/materialize.css';
 import 'materialize-css/dist/js/materialize.js';
 
-console.log(todoApp);
-
 let store = createStore(todoApp);
-
 
 ReactDOM.render(
     <Provider store={store}>
