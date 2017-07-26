@@ -1,7 +1,11 @@
 {
   "name": "todo-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "Simple TODO app developed with React-Redux.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alanlima/todo-app-react"
+  },
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --open",
@@ -17,7 +21,9 @@
     "jquery": "^3.2.1",
     "materialize-css": "^0.99.0",
     "react": "^15.6.1",
-    "react-dom": "^15.6.1"
+    "react-dom": "^15.6.1",
+    "react-redux": "^5.0.5",
+    "redux": "^3.7.2"
   },
   "babel": {
     "presets": [
@@ -33,6 +39,7 @@
     "css-loader": "^0.28.4",
     "file-loader": "^0.11.2",
     "html-webpack-plugin": "^2.29.0",
+    "loglevel": "^1.4.1",
     "materialize-loader": "^2.0.1",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",

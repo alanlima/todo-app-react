@@ -1,28 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { AddButton, TodoFilter, TodoFooter, TodoList } from './Components';
-
-const NoContent = (props) => {
-    return (
-        <strong>
-            <center>Ohh noooooow. There are no items to display =(
-                <br />
-                {props.showAddNewItemLink === true && 
-                    <a href='#' onClick={() => $('.tap-target').tapTarget('open')}>
-                        Well, you can add a new item =)
-                    </a>}
-            </center>
-        </strong>
-    );
-}
-
-NoContent.propTypes = {
-    showAddNewItemLink: PropTypes.bool.isRequired
-}
-
-NoContent.defaultProps = {
-    showAddNewItemLink: true
-}
+import FilterLink from '../containers/FilterLink'
+import VisibleTodoList from '../containers/VisibleTodoList'
+import FooterContainer from '../containers/FooterContainer'
+import AddTodoButton from '../containers/AddTodoButton'
 
 class TodoApp extends Component
 {
@@ -30,7 +12,6 @@ class TodoApp extends Component
         super(props);
 
         this.state = {
-            todos: props.todos,
             filter: (item) => { return true; }
         }
 
@@ -93,31 +74,34 @@ class TodoApp extends Component
     }
 
     render() {
-        const filteredTodos = this.state.todos.filter(this.state.filter);
-        const sortedTodos = filteredTodos.sort((a, b) => a.completed === true);
-        const itemsLeft = this.state.todos.filter((t) => t.completed === false).length;
 
         return (
             <div>
-                <TodoFilter
+                {/* <TodoFilter
                     onFilter={this.handleFilter}
                     selectedFilter={this.state.selectedFilter}
-                />
+                /> */}
 
-                {sortedTodos.length === 0 
+                <FilterLink />
+
+                <VisibleTodoList />
+
+                {/* {sortedTodos.length === 0 
                     ? <NoContent showAddNewItemLink={itemsLeft === 0} />
                     : <TodoList 
                         list={sortedTodos}
                         onClick={this.handleClick}
-                        onDelete={this.handleDelete}  />}
+                        onDelete={this.handleDelete}  />} */}
         
-                <TodoFooter 
+                {/* <TodoFooter 
                     itemsLeft={itemsLeft}
                     enableClearCompleted={itemsLeft !== this.state.todos.length}
                     onClearCompleted={this.handleClearCompleted}
-                    />
+                    /> */}
+                
+                <FooterContainer />
 
-                <AddButton onNewItem={this.handleNewItem} />
+                <AddTodoButton />
             </div>
         )
     }

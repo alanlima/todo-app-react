@@ -1,17 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import NoContent from './NoContent';
 
 const TodoList = (props) => {
+    if(props.todos.length === 0){
+        return (
+            <NoContent showAddNewItemLink={props.itemsLeft === 0} />
+        )
+    }
+
     return (
         <ul className='todo-list'>
-            {props.list.map((item) => {
+            {props.todos.map((item) => {
                 return (<li 
                             key={item.id} 
                             className='todo-item z-depth-1'>
 
                             <a 
                                 className={item.completed && 'done'}
-                                onClick={() => props.onClick(item.id)}>
+                                onClick={() => props.onTodoClick(item.id)}>
 
                                 <input
                                     className='todo-checkbox'
@@ -35,8 +42,8 @@ const TodoList = (props) => {
 }
 
 TodoList.propTypes = {
-    list: PropTypes.array.isRequired,
-    onClick: PropTypes.func.isRequired,
+    todos: PropTypes.array.isRequired,
+    onTodoClick: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired
 }
 

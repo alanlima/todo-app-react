@@ -12,7 +12,7 @@ const TodoFilter = (props) => {
                                 "btn": true,
                                 "waves-effect": true,
                                 "waves-light": true,
-                                "disabled": props.selectedFilter === item
+                                "disabled": item === props.selectedFilter
                             })}
                             onClick={() => props.onFilter(item)}>
                             {item}
