@@ -1,12 +1,15 @@
 import { connect } from 'react-redux'
-import { toggleTodo, deleteTodo } from '../actions'
+import deleteTodo from '../actions/delete-todo'
+import getTodos from '../actions/get-todo'
 import TodoList from '../components/TodoList'
+import toggleTodo from '../actions/toggle-todo'
+import firebaseWatch from '../actions/firebase-watch'
 
 const getVisibleTodos = (todos, filter) => {
     // console.log('getVisibleTodos', todos, filter)
     switch(filter){
         case 'All':
-            return todos;
+            return todos.sort((a, b) => a.completed);
         case 'Completed':
             return todos.filter((item) => item.completed === true);
         case 'Active':
@@ -22,7 +25,12 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => {
+    firebaseWatch.startWatch(dispatch);
+
     return {
+        onGetTodos: () => {
+            dispatch(getTodos());
+        },
         onTodoClick: id => {
             dispatch(toggleTodo(id))
         },

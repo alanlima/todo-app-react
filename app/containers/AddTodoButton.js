@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
-import { addTodo } from '../actions'
 import AddButton from '../components/AddButton'
+import addTodo from '../actions/add-todo';
 
 const mapStateToProps = state => {
     return {
@@ -11,7 +11,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onNewItem: text => {
-            dispatch(addTodo(text))
+            dispatch(addTodo(text));
         }
     }
 }

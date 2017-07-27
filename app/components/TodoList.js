@@ -1,50 +1,57 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import NoContent from './NoContent';
 
-const TodoList = (props) => {
-    if(props.todos.length === 0){
-        return (
-            <NoContent showAddNewItemLink={props.itemsLeft === 0} />
-        )
+class TodoList extends Component {
+
+    componentDidMount() {
+        this.props.onGetTodos();
     }
 
-    return (
-        <ul className='todo-list'>
-            {props.todos.map((item) => {
-                return (<li 
-                            key={item.id} 
-                            className='todo-item z-depth-1'>
+    render() {
+        if(this.props.todos.length === 0){
+            return (
+                <NoContent showAddNewItemLink={this.props.itemsLeft === 0} />
+            )
+        }
 
-                            <a 
-                                className={item.completed && 'done'}
-                                onClick={() => props.onTodoClick(item.id)}>
+        return (
+            <ul className='todo-list'>
+                {this.props.todos.map((item) => {
+                    return (<li 
+                                key={item.id} 
+                                className='todo-item z-depth-1'>
 
-                                <input
-                                    className='todo-checkbox'
-                                    type='checkbox' 
-                                    readOnly
-                                    checked={item.completed == true} />
+                                <a 
+                                    className={item.completed && 'done'}
+                                    onClick={() => this.props.onTodoClick(item.id)}>
 
-                                <label>{item.text}</label>
-                            </a>
+                                    <input
+                                        className='todo-checkbox'
+                                        type='checkbox' 
+                                        readOnly
+                                        checked={item.completed == true} />
 
-                            <span 
-                                className='delete-item' 
-                                onClick={() => props.onDelete(item.id)}>
-                                <i className='material-icons'>delete</i>
-                            </span>
+                                    <label>{item.text}</label>
+                                </a>
 
-                        </li>);
-            })}
-        </ul>
-    );
+                                <span 
+                                    className='delete-item' 
+                                    onClick={() => this.props.onDelete(item.id)}>
+                                    <i className='material-icons'>delete</i>
+                                </span>
+
+                            </li>);
+                })}
+            </ul>
+        );
+    }
 }
 
 TodoList.propTypes = {
     todos: PropTypes.arrayOf(
         PropTypes.shape({
-            id: PropTypes.number.isRequired,
+            id: PropTypes.string.isRequired,
             text: PropTypes.string.isRequired,
             completed: PropTypes.bool.isRequired
         }).isRequired

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { clearCompleted } from '../actions'
+import clearCompleted from '../actions/clear-completed'
 import TodoFooter from '../components/TodoFooter'
 
 const mapStateToProps = state => {
