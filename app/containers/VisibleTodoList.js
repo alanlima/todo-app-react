@@ -7,10 +7,10 @@ import firebaseWatch from '../actions/firebase-watch'
 import editTodo from '../actions/edit-todo'
 
 const getVisibleTodos = (todos, filter) => {
-    // console.log('getVisibleTodos', todos, filter)
     switch(filter){
         case 'All':
-            return todos.sort((a, b) => a.completed);
+            return todos
+                .sort((a, b) => a.completed - b.completed || a.text.toUpperCase() > b.text.toUpperCase());
         case 'Completed':
             return todos.filter((item) => item.completed === true);
         case 'Active':
