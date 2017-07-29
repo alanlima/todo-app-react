@@ -9,8 +9,7 @@ import editTodo from '../actions/edit-todo'
 const getVisibleTodos = (todos, filter) => {
     switch(filter){
         case 'All':
-            return todos
-                .sort((a, b) => a.completed - b.completed || a.text.toUpperCase() > b.text.toUpperCase());
+            return todos;
         case 'Completed':
             return todos.filter((item) => item.completed === true);
         case 'Active':
@@ -18,9 +17,11 @@ const getVisibleTodos = (todos, filter) => {
     }
 }
 
+const sortTodos = todos => todos.sort((a, b) => a.completed - b.completed || a.text.toUpperCase() > b.text.toUpperCase())
+
 const mapStateToProps = state => {
     return {
-        todos: getVisibleTodos(state.todos, state.visibilityFilter),
+        todos: sortTodos(getVisibleTodos(state.todos, state.visibilityFilter)),
         itemsLeft: state.todos.filter(item => item.completed === false).length
     }
 }
