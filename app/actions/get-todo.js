@@ -1,8 +1,10 @@
 import database from './database'
 import ActionTypes from '../actions/action-types'
+import LoadingActions from './loading-actions'
 
 const getTodos = () => {
     return dispatch => {
+        LoadingActions(dispatch).showLoading();
         database
             .ref('/todos')
             .once('value')
@@ -12,6 +14,7 @@ const getTodos = () => {
                     return Object.assign({}, result[k], {id: k})
                 });
                 dispatch(getTodoFullfilledAction(todos));
+                LoadingActions(dispatch).hideLoading();
             })
     }
 }
