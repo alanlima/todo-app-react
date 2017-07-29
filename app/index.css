@@ -22,19 +22,30 @@
     flex-direction: column;
 }
 
-.todo-list li {
-    height: 40px;
+.todo-item, .todo-item-edit {
+    min-height: 40px;
     margin: 6px 0;
     display: inline-flex;
     align-items: center;
     padding-left: 10px;
+    width: 100%;
 }
 
-.todo-list li a {
-    display: inline-flex;
-    margin-right: auto;
-    cursor: pointer;
+.todo-item a {
+    height: 20px;
+}
+
+.todo-item-edit input {
+    margin: 0 !important;
+    height: 2rem !important;
+    margin-right: 7px !important;
+}
+
+.todo-text {
     width: 100%;
+    font-size: 1em;
+    cursor: pointer;
+    vertical-align: center;
 }
 
 .delete-item {

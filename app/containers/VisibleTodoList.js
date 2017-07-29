@@ -4,6 +4,7 @@ import getTodos from '../actions/get-todo'
 import TodoList from '../components/TodoList'
 import toggleTodo from '../actions/toggle-todo'
 import firebaseWatch from '../actions/firebase-watch'
+import editTodo from '../actions/edit-todo'
 
 const getVisibleTodos = (todos, filter) => {
     // console.log('getVisibleTodos', todos, filter)
@@ -36,6 +37,9 @@ const mapDispatchToProps = dispatch => {
         },
         onDelete: id => {
             dispatch(deleteTodo(id))
+        },
+        onEdit: (id, newText) => {
+            dispatch(editTodo(id, newText))
         }
     }
 }
