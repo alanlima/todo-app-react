@@ -8,7 +8,7 @@ const getAll = () => {
             .once('value')
             .then(snap => {
                 const result = snap.val();
-                const todos = Object.keys(result).map(k => {
+                const todos = Object.keys(result || {}).map(k => {
                     return Object.assign({}, result[k], {id: k})
                 });
                 return todos
