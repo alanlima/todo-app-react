@@ -1,4 +1,4 @@
-import database from './database'
+import database from '../api/database'
 import ActionTypes from './action-types'
 
 const todoChangedAction = todo => {

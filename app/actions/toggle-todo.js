@@ -1,11 +1,8 @@
-import database from './database'
+import todoApi from '../api/todo-api'
 
 const toggleTodo = id => {
     return dispatch => {
-        const todoRef = database.ref('/todos/' + id);
-        todoRef.once('value').then(snap => {
-            todoRef.update({completed: !snap.val().completed});
-        })
+        return todoApi.toggleTodo(id)
     }
 }
 
