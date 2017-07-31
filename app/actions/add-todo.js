@@ -1,13 +1,8 @@
-import database from './database'
+import todoApi from '../api/todo-api'
 
 const addTodo = text => {
     return dispatch => {
-        const todosRef = database.ref('/todos');
-        const todo = {
-            text,
-            completed: false
-        };
-        todosRef.push(todo);
+        return todoApi.add(text);
     }
 }
 

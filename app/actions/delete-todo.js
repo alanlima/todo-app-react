@@ -1,8 +1,8 @@
-import database from './database'
+import todoApi from '../api/todo-api'
 
 const deleteTodo = id => {
     return dispatch => {
-        database.ref('/todos/' + id).remove();
+        return todoApi.deleteTodo(id)
     }
 }
 

@@ -1,17 +1,8 @@
-import database from './database';
+import todoApi from '../api/todo-api';
 
 const clearCompleted = () => {
     return dispatch => {
-        const todoRef = database.ref('/todos');
-        const query = todoRef.orderByKey();
-        query.once('value')
-            .then(snap => {
-                snap.forEach(child => {
-                    if(child.val().completed) {
-                        todoRef.child(child.key).remove();
-                    }
-                })
-            })
+        return todoApi.deleteCompleted()
     } 
 }
 

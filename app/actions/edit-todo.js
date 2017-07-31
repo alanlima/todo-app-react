@@ -1,11 +1,8 @@
-import database from './database'
+import todoApi from '../api/todo-api'
 
 const editTodo = (id, newText) => {
     return dispatch => {
-        const todoRef = database.ref('/todos/' + id);
-        todoRef.once('value').then(snap => {
-            todoRef.update({ text: newText });
-        })
+        todoApi.update(id, { text: newText });
     }
 }
 
