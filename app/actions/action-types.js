@@ -6,7 +6,8 @@ const actionTypes = {
     SetVisibilityFilter: 'SET_VISIBILITY_FILTER',
     ShowLoading: 'SHOW_LOADING',
     HideLoading: 'HIDE_LOADING',
-    EditTodo: 'EDIT_TODO'
+    EditTodo: 'EDIT_TODO',
+    NotificationReceived: 'NOTIFICATION_RECEIVED'
 }
 
 module.exports = actionTypes

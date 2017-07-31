@@ -12,7 +12,6 @@ const todos = (state = [], action) => {
         case ActionTypes.GetTodos:
             return action.todos;
         case ActionTypes.TodoRemoved:
-            Materialize.toast('Item removed.', 4000);
             return state.filter(t => t.id !== action.id);
         default:
             return state;

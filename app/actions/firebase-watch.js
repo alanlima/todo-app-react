@@ -13,21 +13,32 @@ const todoRemovedAction = id => {
     return { type: ActionTypes.TodoRemoved, id };
 }
 
+const sendNotification = (type, text) => {
+    return { 
+        type: ActionTypes.NotificationReceived,
+        notificationType: type,
+        text
+    }
+}
+
 module.exports = {
     startWatch: dispatch => {
         const todosRef = database.ref('/todos');
         todosRef.on('child_changed', (childSnapshot, prevChildKey) => {
             const todo = Object.assign({}, childSnapshot.val(), {id: childSnapshot.key});
             dispatch(todoChangedAction(todo));
+            dispatch(sendNotification('TODO_UPDATED', '1 todo was updated'))
         })
 
         todosRef.limitToLast(10).on('child_added', (childSnapshot, prevChildKey) => {
             const todo = Object.assign({}, childSnapshot.val(), {id: childSnapshot.key});
             dispatch(todoAddedAction(todo));
+            dispatch(sendNotification('TODO_ADDED', '1 todo was added'))
         })
 
         todosRef.on('child_removed', oldChildSnapshot => {
             dispatch(todoRemovedAction(oldChildSnapshot.key));
+            dispatch(sendNotification('TODO_DELETED', '1 todo was deleted'))
         })
     },
     stopWatch: () => {
