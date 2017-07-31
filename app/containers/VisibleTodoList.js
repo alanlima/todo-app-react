@@ -33,10 +33,9 @@ const mapDispatchToProps = dispatch => {
 
     return {
         onGetTodos: () => {
-            dispatch(getTodos());
+            dispatch(getTodos())
         },
         onTodoClick: id => {
-            console.log(toggleTodo)
             dispatch(toggleTodo(id))
         },
         onDelete: id => {

@@ -6,6 +6,7 @@ import VisibleTodoList from '../containers/VisibleTodoList'
 import FooterContainer from '../containers/FooterContainer'
 import AddTodoButton from '../containers/AddTodoButton'
 import Loading from '../containers/LoadingContainer'
+import Notifications from '../containers/Notifications'
 
 class TodoApp extends Component
 {
@@ -21,6 +22,8 @@ class TodoApp extends Component
                 <FooterContainer />
 
                 <AddTodoButton />
+
+                <Notifications />
             </div>
         )
     }
