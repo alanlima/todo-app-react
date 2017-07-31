@@ -1,10 +1,12 @@
 import { connect } from 'react-redux'
-import deleteTodo from '../actions/delete-todo'
-import getTodos from '../actions/get-todo'
 import TodoList from '../components/TodoList'
-import toggleTodo from '../actions/toggle-todo'
-import firebaseWatch from '../actions/firebase-watch'
-import editTodo from '../actions/edit-todo'
+import { 
+    toggleTodo, 
+    deleteTodo, 
+    getTodos, 
+    firebaseWatch, 
+    editTodo 
+} from '../actions'
 
 const getVisibleTodos = (todos, filter) => {
     switch(filter){
@@ -34,6 +36,7 @@ const mapDispatchToProps = dispatch => {
             dispatch(getTodos());
         },
         onTodoClick: id => {
+            console.log(toggleTodo)
             dispatch(toggleTodo(id))
         },
         onDelete: id => {
@@ -50,4 +53,4 @@ const VisibileTodoList = connect(
     mapDispatchToProps
 )(TodoList)
 
-export default VisibileTodoList
+module.exports = VisibileTodoList

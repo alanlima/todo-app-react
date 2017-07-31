@@ -19,4 +19,4 @@ const todos = (state = [], action) => {
     }
 }
 
-export default todos
+module.exports = todos

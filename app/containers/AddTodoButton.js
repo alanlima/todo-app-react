@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import AddButton from '../components/AddButton'
-import addTodo from '../actions/add-todo';
+import { addTodo } from '../actions';
 
 const mapStateToProps = state => {
     return {
@@ -21,4 +21,4 @@ const AddTodoButton = connect(
     mapDispatchToProps
 )(AddButton)
 
-export default AddTodoButton
+module.exports = AddTodoButton

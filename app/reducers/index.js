@@ -6,7 +6,7 @@ import loading from './loading'
 const todoApp = combineReducers({
     todos,
     visibilityFilter,
-    loading
+    isLoading: loading
 })
 
 module.exports = todoApp;

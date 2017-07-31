@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import clearCompleted from '../actions/clear-completed'
+import { clearCompleted } from '../actions'
 import TodoFooter from '../components/TodoFooter'
 
 const mapStateToProps = state => {
@@ -22,4 +22,4 @@ const FooterContainer = connect(
     mapDispatchToProps
 )(TodoFooter)
 
-export default FooterContainer
+module.exports =  FooterContainer

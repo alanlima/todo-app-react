@@ -9,4 +9,4 @@ const visibilityFilter = (state = 'All', action) => {
     }
 }
 
-export default visibilityFilter
+module.exports = visibilityFilter
