@@ -20,7 +20,7 @@
     "classnames": "^2.2.5",
     "expose-loader": "^0.7.3",
     "firebase": "^4.1.5",
-    "jquery": "^3.2.1",
+    "jquery": "^3.5.0",
     "materialize-css": "^0.99.0",
     "promise-polyfill": "^6.0.2",
     "react": "^15.6.1",
