@@ -16,7 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.16.2",
+    "axios": "^0.18.1",
     "classnames": "^2.2.5",
     "dotenv-webpack": "^1.7.0",
     "expose-loader": "^0.7.3",
