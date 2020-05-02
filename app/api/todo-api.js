@@ -30,7 +30,7 @@ const add = (text) => {
 }
 
 const update = (id, updateSet) => {
-    const ref = database.ref(todoRef + '/' + id);
+    const ref = database.ref(todosRef + '/' + id);
     ref.once('value').then(snap => {
         ref.update(Object.assign({}, updateSet));
     })

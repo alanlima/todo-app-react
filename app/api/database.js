@@ -1,14 +1,18 @@
-import firebase from 'firebase'
+import firebase from 'firebase';
+
+const projectId = process.env.FIREBASE_PROJECT_ID;
+const apiKey = process.env.FIREBASE_API_KEY;
+const messagingSenderId = process.env.FIRABASE_MESSASING_SENDER_ID;
 
 const config = {
-    apiKey: "AIzaSyDV3rAE2GEYrK1-zxnWUNY9iOfM8gu82_8",
-    authDomain: "todo-react-bcc5d.firebaseapp.com",
-    databaseURL: "https://todo-react-bcc5d.firebaseio.com",
-    projectId: "todo-react-bcc5d",
-    storageBucket: "todo-react-bcc5d.appspot.com",
-    messagingSenderId: "538482364169"
+    apiKey,
+    messagingSenderId,
+    projectId,
+    authDomain: `${projectId}.firebaseapp.com`,
+    databaseURL: `https://${projectId}.firebaseio.com`,
+    storageBucket: `${projectId}.appspot.com`,
 };
 
- const database = firebase.initializeApp(config).database();
+const database = firebase.initializeApp(config).database();
 
- module.exports = database;
+module.exports = database;
