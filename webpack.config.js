@@ -1,7 +1,8 @@
 //import path from 'path';
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var path = require('path');
-var webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+const webpack = require('webpack');
+const Dotenv = require('dotenv-webpack');
 
 const config = {
     entry: './app/index.js',
@@ -31,6 +32,9 @@ const config = {
         historyApiFallback: true,
     },
     plugins: [
+        new Dotenv({
+            safe: true
+        }),
         new webpack.ProvidePlugin({
             $: "jquery",
             jQuery: "jquery"
