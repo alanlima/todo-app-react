@@ -47,7 +47,7 @@
     "css-loader": "^0.28.4",
     "deep-freeze": "0.0.1",
     "file-loader": "^0.11.2",
-    "html-webpack-plugin": "^2.29.0",
+    "html-webpack-plugin": "^5.5.0",
     "jest": "^20.0.4",
     "loglevel": "^1.4.1",
     "materialize-loader": "^2.0.1",
